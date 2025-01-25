@@ -21,20 +21,20 @@ while(true){
         if($scoreInput >= 90){
             $letterGrade = 'A';
         }
-        else if($scoreInput >=80){
+        else if($scoreInput >= 80){
             $letterGrade = 'B';
         }
-        else if($scoreInput >=70){
+        else if($scoreInput >= 70){
             $letterGrade = 'C';
         }
-        else if($scoreInput >=60){
+        else if($scoreInput >= 60){
             $letterGrade = 'D';
         }
         else{
             $letterGrade = 'F';
         }
 
-        echo ("This students score of $scoreInput is a.... $letterGrade. Todays date is: $currentDate\n");
+        echo ("Todays date is: $currentDate\nThis students score of $scoreInput is a.... $letterGrade.\n");
     }
     catch(Exception $e){
         echo $e->getMessage() . "\n";
