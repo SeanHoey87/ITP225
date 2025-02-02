@@ -4,10 +4,10 @@ About:
 
 Contents:
 
-  assignments/ – Homework and exercises
+  assignments/ – Homework and exercises<br/>
   projects/ – Larger coding projects
 
 Notes:
 
-  Some files may be incomplete or experimental.
+  Some files may be incomplete or experimental.<br/>
   This repo is mainly for personal reference.
