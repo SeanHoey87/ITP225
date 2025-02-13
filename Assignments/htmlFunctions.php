@@ -1,30 +1,41 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
-    $html_content = isset($_POST['html_content']) ? $_POST['html_content'] : '';
-} else {
-    $html_content = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input = $_POST["html_content"] ?? "";
+    
+    function convertWithHtmlSpecialChars($str) {
+        return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+    }
+    
+    function convertWithStripTags($str) {
+        return strip_tags($str);
+    }
+    
+    function convertWithHtmlEntities($str) {
+        return htmlentities($str, ENT_QUOTES, 'UTF-8');
+    }
+    
+    $htmlspecialchars_result = convertWithHtmlSpecialChars($input);
+    $strip_tags_result = convertWithStripTags($input);
+    $htmlentities_result = convertWithHtmlEntities($input);
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PHP HTML Functions Test</title>
+    <title>HTML Transformer</title>
 </head>
 <body>
-    <h2>Test PHP HTML Functions</h2>
-    <form action="" method="post">
-        <label>Enter HTML Content:</label>
-        <textarea name="html_content" required><?php echo htmlspecialchars($html_content); ?></textarea><br>
-        <input type="submit" value="Submit"/>
+    <form method="post">
+        <textarea name="html_content" rows="5" cols="50"><?php echo isset($input) ? htmlspecialchars($input) : ''; ?></textarea>
+        <br>
+        <input type="submit" value="Transform">
     </form>
-
-    <?php if (!empty($html_content)): ?>
-        <h3>Results of PHP Functions:</h3>
-        <p><strong>Original:</strong> <?php echo htmlspecialchars($html_content); ?></p>
-        <p><strong>Using htmlspecialchars():</strong> <?php echo htmlspecialchars($html_content); ?></p>
-        <p><strong>Using htmlentities():</strong> <?php echo htmlentities($html_content); ?></p>
-        <p><strong>Using strip_tags():</strong> <?php echo strip_tags($html_content); ?></p>
+    
+    <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+        <h2>Results:</h2>
+        <p><strong>htmlspecialchars:</strong> <pre><?php echo htmlspecialchars($htmlspecialchars_result); ?></pre></p>
+        <p><strong>strip_tags:</strong> <?php echo $strip_tags_result; ?></p>
+        <p><strong>htmlentities:</strong> <pre><?php echo htmlentities($htmlentities_result); ?></pre></p>
     <?php endif; ?>
 </body>
 </html>
