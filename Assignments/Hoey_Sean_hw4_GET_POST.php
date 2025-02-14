@@ -2,12 +2,12 @@
 $first_name = $last_name = $url = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
-    $first_name = isset($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : '';
-    $last_name = isset($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : '';
+    $firstName = isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '';
+    $lastName = isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '';
     $url = isset($_POST['url']) ? htmlspecialchars($_POST['url']) : '';
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET)) {
-    $first_name = isset($_GET['first_name']) ? htmlspecialchars($_GET['first_name']) : '';
-    $last_name = isset($_GET['last_name']) ? htmlspecialchars($_GET['last_name']) : '';
+    $firstName = isset($_GET['firstName']) ? htmlspecialchars($_GET['firstName']) : '';
+    $lastName = isset($_GET['lastName']) ? htmlspecialchars($_GET['lastName']) : '';
     $url = isset($_GET['url']) ? htmlspecialchars($_GET['url']) : '';
 }
 ?>
@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     <h2>Submit Your Information</h2>
     <form action="" method="get">
         <label>First name: </label>
-        <input type="text" name="first_name" required/><br>
+        <input type="text" name="firstName" required/><br>
         <label>Last name: </label>
-        <input type="text" name="last_name" required/><br>
+        <input type="text" name="lastName" required/><br>
         <label>URL: </label>
         <input type="url" name="url" required/><br>
         <input type="submit" value="Submit using GET"/>
@@ -31,18 +31,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     
     <form action="" method="post">
         <label>First name: </label>
-        <input type="text" name="first_name" required/><br>
+        <input type="text" name="firstName" required/><br>
         <label>Last name: </label>
-        <input type="text" name="last_name" required/><br>
+        <input type="text" name="lastName" required/><br>
         <label>URL: </label>
         <input type="url" name="url" required/><br>
         <input type="submit" value="Submit using POST"/>
     </form>
 
-    <?php if (!empty($first_name) && !empty($last_name) && !empty($url)): ?>
+    <?php if (!empty($firstName) && !empty($lastName) && !empty($url)): ?>
         <h3>Received Data:</h3>
-        <p><strong>First Name:</strong> <?php echo $first_name; ?></p>
-        <p><strong>Last Name:</strong> <?php echo $last_name; ?></p>
+        <p><strong>First Name:</strong> <?php echo $firstName; ?></p>
+        <p><strong>Last Name:</strong> <?php echo $lastName; ?></p>
         <p><strong>URL:</strong> <a href="<?php echo $url; ?>" target="_blank"><?php echo $url; ?></a></p>
     <?php endif; ?>
 </body>
