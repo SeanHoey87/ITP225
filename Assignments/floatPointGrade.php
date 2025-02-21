@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $grade = floatval($_POST["grade"]);
         
         if ($grade < 0 || $grade > 100) {
-            $message = "Invalid input. Please enter a grade between 0 and 100.";
+            $message = "Invalid input. Enter a grade between 0 and 100.";
         } else {
             if ($grade > 90.0) {
                 $letter = "A";
@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $letter = "F";
             }
-            $message = "Your letter grade is: $letter";
+            $message = "letter grade is: $letter";
         }
     } else {
-        $message = "Invalid input. Please enter a valid numeric grade.";
+        $message = "Invalid input. enter a valid grade.";
     }
 }
 ?>
@@ -28,14 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Grade Checker</title>
+    <title>Grade Calculator</title>
 </head>
 <body>
-    <h2>Enter Your Grade</h2>
+    <h2>Enter Grade</h2>
     <form method="post">
-        <label for="grade">Enter a numeric grade (0-100):</label>
+        <label for="grade">Enter a grade (0-100):</label>
         <input type="text" name="grade" required>
-        <button type="submit">Check Grade</button>
+        <button type="submit">Calculate Grade</button>
     </form>
     
     <?php if (isset($message)): ?>

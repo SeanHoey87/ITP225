@@ -3,11 +3,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bac = floatval($_POST["bac"]);
     
     if ($bac < 0.05) {
-        $message = "Everything is OK. You are presumed not under the influence of alcohol.";
+        $message = "Everything is OK. not under the influence of alcohol.";
     } elseif ($bac >= 0.05 && $bac <= 0.08) {
-        $message = "OK, but Slightly Higher than Normal. There is no presumption about being under or not under the influence.";
+        $message = "OK, but Slightly Higher than Normal";
     } else {
-        $message = "Over the Influence of Alcohol. You are presumed to be under the influence and should not drive.";
+        $message = "Over the Influence of Alcohol. You are under the influence and should not drive.";
     }
 }
 ?>
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BAC Level Checker</title>
+    <title>BAC Level Tester</title>
 </head>
 <body>
     <h2>Blood Alcohol Content (BAC) Tester</h2>
