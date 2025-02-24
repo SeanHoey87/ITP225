@@ -1,0 +1,137 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background: #343a40;
+    color: white;
+    padding: 15px;
+    font-size: 1.5em;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header a {
+    color: #f8d210;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+header a:hover {
+    color: #ffeb3b;
+}
+
+/* Products Section */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Product Card */
+.product {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 15px;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Product Image */
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Product Title */
+.product h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* Price */
+.product p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Buttons */
+button {
+    background: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Cart Table */
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 80%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #343a40;
+    color: white;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .products {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product {
+        width: 80%;
+    }
+
+    table {
+        width: 95%;
+    }
+}
