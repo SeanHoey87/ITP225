@@ -1,18 +1,18 @@
 <?php
 
-// Function to compute MD5 hash
+// Function to MD5 hash
 function md5_hash($input) {
     return md5($input);
 }
 
-// Function to compute SHA1 hash
+// Function to SHA1 hash
 function sha1_hash($input) {
     return sha1($input);
 }
 
-// Function to get user input and process it
+// Function to get user input
 function get_user_input() {
-    // Ask for input
+    // Get input
     $input = readline("Enter the string to hash: ");
     
     // Trim spaces and convert to lowercase
@@ -31,11 +31,11 @@ function get_hash_type() {
     return $hash_type;
 }
 
-// Main program logic
+
 $hash_type = get_hash_type();  // Get the hash type choice
 $input = get_user_input();  // Get user input
 
-// Output the appropriate hash
+// Output the hash
 if ($hash_type === 'md5') {
     echo "MD5 Hash: " . md5_hash($input) . "\n";
 } elseif ($hash_type === 'sha1') {
