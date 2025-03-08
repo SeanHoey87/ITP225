@@ -1,3 +1,10 @@
+<?php
+require 'connection.php'; // Database connection
+
+$stmt = $conn->query("SELECT * FROM products");
+$products = $stmt->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,30 +18,19 @@
         <h1>Online Store</h1>
         <a href="cart.php" class="cart-link">🛒 View Cart</a>
     </header>
-
-    <section class="products">
-        <!-- Example Product -->
-        <div class="product">
-            <img src="images/laptop.jpg" alt="Laptop">
-            <h2>Laptop</h2>
-            <p>$500.00</p>
-            <form action="add_to_cart.php" method="POST">
-                <input type="hidden" name="product_id" value="1">
-                <button type="submit">Add to Cart</button>
-            </form>
-        </div>
-
-        <div class="product">
-            <img src="images/smartphone.jpg" alt="Smartphone">
-            <h2>Smartphone</h2>
-            <p>$299.99</p>
-            <form action="add_to_cart.php" method="POST">
-                <input type="hidden" name="product_id" value="2">
-                <button type="submit">Add to Cart</button>
-            </form>
-        </div>
-
-        <!-- Add more products here -->
-    </section>
+    <h1>Online Store</h1>
+    <div class="products">
+        <?php foreach ($products as $product) : ?>
+            <div class="product">
+                <img src="<?= $product['image']; ?>" alt="<?= $product['name']; ?>" width="150">
+                <h3><?= $product['name']; ?></h3>
+                <p>$<?= number_format($product['price'], 2); ?></p>
+                <form action="add_to_cart.php" method="POST">
+                    <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </body>
 </html>
