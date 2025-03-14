@@ -1,37 +1,25 @@
 <?php
-session_start();
+// Database connection
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=hw7db', 'root', '', [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+]);
 
-$host = "localhost"; // Change if necessary
-$dbname = "hw7db";
-$username_db = "root"; // Change if necessary
-$password_db = ""; // Change if necessary
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = preg_replace("/[^a-zA-Z0-9_]/", "", $_POST['username']);
+    $password = preg_replace("/[^a-zA-Z0-9_]/", "", $_POST['password']);
 
-function sanitize_input($input) {
-    return preg_replace("/[^a-zA-Z0-9]/", "", $input);
-}
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username_db, $password_db);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = sanitize_input($_POST['username']);
-    $password = sanitize_input($_POST['password']);
-    
-    $stmt = $pdo->prepare("SELECT hw7_hashcode FROM hw7 WHERE hw7_username = :username");
-    $stmt->bindParam(":username", $username);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+    $stmt = $pdo->prepare('SELECT * FROM hw7 WHERE hw7_username = ?');
+    $stmt->execute([$username]);
+    $user = $stmt->fetch();
+    // echo "Stored Hash: " . $user['hw7_hashcode'] . "<br>";
+    // echo "Entered Password: " . $password . "<br>";
+    // Check password
     if ($user && password_verify($password, $user['hw7_hashcode'])) {
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        echo "<p>Login successful! Welcome, $username.</p>";
+        $message = "<p style='color: green;'>Login successful! Welcome, $username.</p>";
     } else {
-        echo "<p>Invalid username or password.</p>";
+        $message = "<p style='color: red;'>Invalid username or password.</p>";
     }
 }
 ?>
@@ -44,15 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login Form</title>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST" action="">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form action="" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <?php if (isset($message)) echo $message; ?>
+
+    </div>
 </body>
 </html>
