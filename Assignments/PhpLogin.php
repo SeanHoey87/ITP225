@@ -3,7 +3,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     
-    // Here you can add authentication logic, such as checking against a database
     echo "<p>Username: $username</p>";
     echo "<p>Password: $password</p>";
 }
