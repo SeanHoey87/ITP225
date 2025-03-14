@@ -70,10 +70,8 @@ foreach ($cart_items as $item) {
             </tbody>
         </table>
         <h3>Total: $<?= number_format($total_price, 2); ?></h3>
-        <a href="index.php">Continue Shopping</a>
     <?php else: ?>
         <p>Your cart is empty.</p>
-        <a href="index.php">Go Back to Store</a>
     <?php endif; ?>
 </body>
 </html>

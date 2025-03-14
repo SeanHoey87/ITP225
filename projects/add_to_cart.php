@@ -1,8 +1,8 @@
 <?php
 session_start();
-require 'config.php'; // Connect to the database
+require 'connection.php'; // Connect to the database
 
-// Ensure session ID exists
+// session ID exists
 if (!isset($_SESSION['session_id'])) {
     $_SESSION['session_id'] = session_id();
 }
