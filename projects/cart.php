@@ -65,6 +65,7 @@ foreach ($cart_items as $item) {
                                 <button type="submit">Remove</button>
                             </form>
                         </td>
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>
