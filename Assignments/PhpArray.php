@@ -12,7 +12,7 @@ function readDataFromFile($filename) {
         die("Error: Unable to open file.\n");
     }
     
-    echo "Reading file: $filename\n"; // Debugging line
+    echo "Reading file: $filename\n";
     
     while (($line = fgets($file)) !== false && count($data) < 12) {
 
